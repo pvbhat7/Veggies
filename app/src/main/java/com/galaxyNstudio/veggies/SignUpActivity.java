@@ -62,7 +62,7 @@ public void onClick(View view){
                 if(signup_mobile.getText().toString().trim().length() == 0 || signup_email.getText().toString().trim().length() == 0 || signup_name.getText().toString().trim().length() == 0 || signup_password.getText().toString().trim().length() == 0 ){
                     Toast.makeText(getApplicationContext(),"Please enter all details",Toast.LENGTH_LONG).show();
                 }else{
-                    Intent intent = new Intent(this, OtpActivity.class);
+                    Intent intent = new Intent(SignUpActivity.this, OtpActivity.class);
                     intent.putExtra("phone",signup_mobile.getText().toString().trim());
                     startActivity(intent);
                 }

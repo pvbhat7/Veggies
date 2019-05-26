@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "806009892053",
+    "firebase_url": "https://veggies-8976b.firebaseio.com",
+    "project_id": "veggies-8976b",
+    "storage_bucket": "veggies-8976b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:806009892053:android:da502b1606e2cd51",
+        "android_client_info": {
+          "package_name": "com.galaxyNstudio.veggies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "806009892053-o11d1g85q0g4d38ba0v119orhn1la67m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.galaxyNstudio.veggies",
+            "certificate_hash": "1f3b359ac882f0fff2492e6f113518927a37533f"
+          }
+        },
+        {
+          "client_id": "806009892053-v9s1bfbe9mf1o1prel1qiq2fgstb1dal.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9XdVZiHzNORnqmW2kk6pkP4peeyi7afQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "806009892053-v9s1bfbe9mf1o1prel1qiq2fgstb1dal.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -40,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
+        android:text="a@a.com"
         android:id="@+id/signup_emailId"
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
@@ -51,6 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
+        android:text="name"
         android:id="@+id/signup_name"
         android:inputType="text"
         android:layout_width="match_parent"
@@ -62,6 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
+        android:text="pwd"
         android:id="@+id/signup_password"
         android:inputType="textPassword"
         android:layout_width="match_parent"

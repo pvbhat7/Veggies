@@ -3,8 +3,8 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "net.simplifiedcoding.retrofitandroidtutorial"
-        minSdkVersion 15
+        applicationId "com.galaxyNstudio.veggies"
+        minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -54,4 +54,10 @@ dependencies {
     // butter knife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    //firebase
+    implementation 'com.google.firebase:firebase-auth:17.0.0'
+    implementation 'com.google.firebase:firebase-core:16.0.9'
 }
+
+apply plugin: 'com.google.gms.google-services'
