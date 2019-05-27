@@ -175,8 +175,10 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
                         if (task.isSuccessful()) {
                             Toast.makeText(OtpActivity.this, "Verification Success", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = task.getResult().getUser();
-                            if(PARENT_COMMAND.equals("signup_activity"))
-                            registerUserInDatabase();
+                            //if(PARENT_COMMAND.equals("signup_activity"))
+                            //registerUserInDatabase();
+                            Intent intent = new Intent(OtpActivity.this, MainActivity.class);
+                            startActivity(intent);
 
                         } else {
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
