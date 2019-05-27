@@ -24,6 +24,13 @@ import org.w3c.dom.Text;
 
 import java.util.concurrent.TimeUnit;
 
+import api.RetrofitClient;
+import model.MobileExist;
+import model.User;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class OtpActivity extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -37,13 +44,18 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
     PhoneAuthProvider.ForceResendingToken mResendToken;
     private FirebaseAuth mAuth;
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
+    private String signup_mobile,signup_email,signup_password,signup_name;
+
+    String PARENT_COMMAND;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
         getSupportActionBar().hide();
         initFields();
-        //otpLabel.setText("OTP sent to "+getIntent().getStringExtra("phone"));
+        otpLabel=findViewById(R.id.otpLabel);
+        otpLabel.setText("OTP sent to "+getIntent().getStringExtra("phone"));
+        PARENT_COMMAND=getIntent().getStringExtra("parent_command");
 
 
         //Add it in the onCreate method, after calling method initFields()
@@ -163,8 +175,9 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
                         if (task.isSuccessful()) {
                             Toast.makeText(OtpActivity.this, "Verification Success", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = task.getResult().getUser();
-                            Intent intent=new Intent(OtpActivity.this,MainActivity.class);
-                            startActivity(intent);
+                            if(PARENT_COMMAND.equals("signup_activity"))
+                            registerUserInDatabase();
+
                         } else {
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 Toast.makeText(OtpActivity.this, "Verification Failed, Invalid credentials", Toast.LENGTH_SHORT).show();
@@ -172,6 +185,40 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
                         }
                     }
                 });
+    }
+
+    private void registerUserInDatabase() {
+        Call<MobileExist> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .createVuser(getIntent().getStringExtra("name"),
+                        getIntent().getStringExtra("email"),
+                        getIntent().getStringExtra("password"),
+                        getIntent().getStringExtra("mobile"));
+
+        call.enqueue(new Callback<MobileExist>() {
+            @Override
+            public void onResponse(Call<MobileExist> call, Response<MobileExist> response) {
+                MobileExist res = response.body();
+                if (response.code() == 201) {
+                    if(response != null)
+                    {
+                        if (!res.getError()) {
+                            // redirect to OTP screen
+                            Intent intent = new Intent(OtpActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                } else if (response.code() == 422) {
+                    Toast.makeText(OtpActivity.this, res.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MobileExist> call, Throwable t) {
+
+            }
+        });
     }
 
     public void sighOut(){

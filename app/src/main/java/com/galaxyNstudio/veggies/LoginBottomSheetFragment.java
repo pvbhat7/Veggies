@@ -2,6 +2,7 @@ package com.galaxyNstudio.veggies;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -32,6 +33,7 @@ public class LoginBottomSheetFragment extends BottomSheetDialogFragment implemen
     EditText loginMobileEditText;
 
     Button butterLoginButton;
+    ProgressDialog progressDialog;
 
     public LoginBottomSheetFragment() {
         // Required empty public constructor
@@ -109,6 +111,9 @@ public class LoginBottomSheetFragment extends BottomSheetDialogFragment implemen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.butterLoginButton:
+                progressDialog=new ProgressDialog(getActivity());
+                progressDialog.setMessage("Loading data...");
+                progressDialog.show();
 
                 String mobile = loginMobileEditText.getText().toString().trim();
 
@@ -125,8 +130,6 @@ public class LoginBottomSheetFragment extends BottomSheetDialogFragment implemen
 
     public void checkUserAlreadyPresent(final String mobile) {
 
-        boolean flag=false;
-
         Call<MobileExist> call = RetrofitClient
                 .getInstance()
                 .getApi()
@@ -135,22 +138,24 @@ public class LoginBottomSheetFragment extends BottomSheetDialogFragment implemen
         call.enqueue(new Callback<MobileExist>() {
             @Override
             public void onResponse(Call<MobileExist> call, Response<MobileExist> response) {
+                progressDialog.dismiss();
                 if (response.code() == 201) {
-
-                    MobileExist res = response.body();
-                    if (res.getError().equals(Boolean.TRUE)) {
-                        // redirect to OTP screen
-                        Intent intent = new Intent(getActivity(), OtpActivity.class);
-                        intent.putExtra("phone", mobile);
-                        startActivity(intent);
-                    } else if (res.getError().equals(Boolean.FALSE)) {
-                        //new user creation so redirect to signup activity
-                        Intent intent = new Intent(getActivity(), SignUpActivity.class);
-                        intent.putExtra("phone", mobile);
-                        startActivity(intent);
+                    if(response != null)
+                    {
+                        MobileExist res = response.body();
+                        if (res.getError()) {
+                            // redirect to OTP screen
+                            Intent intent = new Intent(getActivity(), OtpActivity.class);
+                            intent.putExtra("phone", mobile);
+                            intent.putExtra("parent_command","login_activity");
+                            startActivity(intent);
+                        } else {
+                            //new user creation so redirect to signup activity
+                            Intent intent = new Intent(getActivity(), SignUpActivity.class);
+                            intent.putExtra("phone", mobile);
+                            startActivity(intent);
+                        }
                     }
-                    Toast.makeText(getActivity(), res.getMessage(), Toast.LENGTH_LONG).show();
-
                 } else if (response.code() == 422) {
                     Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG).show();
                 }

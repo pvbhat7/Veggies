@@ -1,6 +1,7 @@
 package api;
 
 import model.MobileExist;
+import model.User;
 import retrofit2.Call;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
@@ -52,9 +53,25 @@ public interface Api {
     @DELETE("deleteuser/{id}")
     Call<DefaultResponse> deleteUser(@Path("id") int id);*/
 
-
+    @FormUrlEncoded
     @POST("checkVMobileExists")
     Call<MobileExist> checkUserMobileExists(
+            @Field("mobile") String mobile
+    );
+
+    @FormUrlEncoded
+    @POST("checkVEmailExists")
+    Call<MobileExist> checkVEmailExists(
+            @Field("email") String email
+    );
+
+
+    @FormUrlEncoded
+    @POST("createVuser")
+    Call<MobileExist> createVuser(
+            @Field("name") String name,
+            @Field("email") String email,
+            @Field("password") String password,
             @Field("mobile") String mobile
     );
 

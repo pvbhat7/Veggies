@@ -2,15 +2,15 @@ package model;
 
 public class MobileExist {
 
-    private String error;
+    private boolean error;
     private String message;
 
-    public MobileExist(String error, String message) {
+    public MobileExist(boolean error, String message) {
         this.error = error;
         this.message = message;
     }
 
-    public String getError() {
+    public boolean getError() {
         return error;
     }
 
@@ -18,7 +18,7 @@ public class MobileExist {
         return message;
     }
 
-    public void setError(String error) {
+    public void setError(boolean error) {
         this.error = error;
     }
 
