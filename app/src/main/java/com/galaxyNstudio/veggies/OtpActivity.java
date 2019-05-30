@@ -207,7 +207,7 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
                     {
                         if (!res.getError()) {
                             // redirect to OTP screen
-                            Intent intent = new Intent(OtpActivity.this, MainActivity.class);
+                            Intent intent = new Intent(OtpActivity.this, HomePage.class);
                             startActivity(intent);
                         }
                     }

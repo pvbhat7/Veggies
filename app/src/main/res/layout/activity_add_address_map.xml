@@ -1,9 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
+<LinearLayout
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddAddressMap" />
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            tools:context=".AddAddressMap" />
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/imgLocationPinUp"
+            android:src="@drawable/ic_person_pin"
+            />
+    </RelativeLayout>
+
+    <Button
+        android:visibility="visible"
+        android:id="@+id/mapContinueButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="#000000"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="CONTINUE"
+        android:textColor="#fff"/>
+    <LinearLayout
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="Set Delivery Location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:text="    Enter complete address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/complete_address"
+            android:inputType="phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:text="   Landmark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/landmark"
+            android:inputType="phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:visibility="visible"
+            android:id="@+id/add_address_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="#000000"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="ADD ADDRESS"
+            android:textColor="#fff"/>
+    </LinearLayout>
+</LinearLayout>

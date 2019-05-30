@@ -20,7 +20,7 @@
 
     <!--Style for Splash Screen-->
     <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name ="android:windowBackground"> @drawable/splash_background</item>
+        <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 
     <style name="DialogStyle" parent="Theme.Design.Light.BottomSheetDialog">

@@ -14,4 +14,11 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="title_activity_add_address_map">Map</string>
+    <string name="title_activity_home_page">HomePage</string>
+    <string name="in_stock">In stock</string>
+    <string name="our_price">our price</string>
+    <string name="availability">availability</string>
+    <string name="mrp">mrp</string>
+    <string name="add">add</string>
+    <string name="off">off</string>
 </resources>
