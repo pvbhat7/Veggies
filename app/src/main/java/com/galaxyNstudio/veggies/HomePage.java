@@ -64,13 +64,13 @@ public class HomePage extends AppCompatActivity
         carouselView.setPageCount(sampleImages.length);
 
         carouselView.setImageListener(imageListener);
-        recyclerView=(RecyclerView)findViewById(R.id.recyclerview);
+        /*recyclerView=(RecyclerView)findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         productList=new ArrayList<>();
 
         loadProductOnline();
-
+*/
     }
     ImageListener imageListener = new ImageListener() {
         @Override
