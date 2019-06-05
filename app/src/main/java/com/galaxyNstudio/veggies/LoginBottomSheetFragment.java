@@ -23,9 +23,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import api.RetrofitClient;
+import com.galaxyNstudio.veggies.api.RetrofitClient;
+import com.galaxyNstudio.veggies.model.MobileExist;
+
 import butterknife.BindView;
-import model.MobileExist;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -3,9 +3,6 @@ package com.galaxyNstudio.veggies;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
@@ -34,13 +31,15 @@ import com.synnapps.carouselview.ImageListener;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import com.galaxyNstudio.veggies.model.Product;
+
 public class HomePage extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
 
     CarouselView carouselView;
+    private Button vegetable;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<Product> productList;
@@ -64,6 +63,8 @@ public class HomePage extends AppCompatActivity
         carouselView.setPageCount(sampleImages.length);
 
         carouselView.setImageListener(imageListener);
+        vegetable=findViewById(R.id.vegetables);
+        vegetable.setOnClickListener(this);
         /*recyclerView=(RecyclerView)findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -184,4 +185,13 @@ public class HomePage extends AppCompatActivity
     }
 
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.vegetables:
+                Intent intent=new Intent(HomePage.this,VegetableActivity.class);
+                startActivity(intent);
+            break;
+        }
+    }
 }

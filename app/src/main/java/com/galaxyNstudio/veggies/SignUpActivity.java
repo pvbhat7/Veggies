@@ -11,8 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import api.RetrofitClient;
-import model.MobileExist;
+
+import com.galaxyNstudio.veggies.api.RetrofitClient;
+import com.galaxyNstudio.veggies.model.MobileExist;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

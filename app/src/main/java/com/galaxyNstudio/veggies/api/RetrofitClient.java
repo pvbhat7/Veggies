@@ -1,4 +1,4 @@
-package api;
+package com.galaxyNstudio.veggies.api;
 
 import android.util.Base64;
 

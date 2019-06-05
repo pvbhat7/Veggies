@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.galaxyNstudio.veggies.api.RetrofitClient;
+import com.galaxyNstudio.veggies.model.MobileExist;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -20,13 +22,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
-import org.w3c.dom.Text;
-
 import java.util.concurrent.TimeUnit;
 
-import api.RetrofitClient;
-import model.MobileExist;
-import model.User;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

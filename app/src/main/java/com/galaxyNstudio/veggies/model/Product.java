@@ -1,4 +1,4 @@
-package com.galaxyNstudio.veggies;
+package com.galaxyNstudio.veggies.model;
 
 public class Product {
     private String productName;
