@@ -1,4 +1,4 @@
-package com.galaxyNstudio.veggies;
+package com.galaxyNstudio.veggies.activities;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import com.galaxyNstudio.veggies.R;
 import com.galaxyNstudio.veggies.model.Product;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterView> {

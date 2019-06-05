@@ -1,4 +1,4 @@
-package com.galaxyNstudio.veggies;
+package com.galaxyNstudio.veggies.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBar.TabListener;
 import android.support.v7.app.AppCompatActivity;
 
+import com.galaxyNstudio.veggies.R;
 import com.galaxyNstudio.veggies.tabs.GridLayout_Fragment;
 import com.galaxyNstudio.veggies.tabs.LinearLayout_Fragment;
 

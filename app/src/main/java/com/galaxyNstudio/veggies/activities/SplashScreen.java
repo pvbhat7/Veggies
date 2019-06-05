@@ -1,13 +1,11 @@
-package com.galaxyNstudio.veggies;
+package com.galaxyNstudio.veggies.activities;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
-import java.util.concurrent.TimeUnit;
+import com.galaxyNstudio.veggies.R;
 
 public class SplashScreen extends AppCompatActivity {
 
