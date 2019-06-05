@@ -1,9 +1,13 @@
 package com.galaxyNstudio.veggies.tabs;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.galaxyNstudio.veggies.MainViewModel;
 import com.galaxyNstudio.veggies.R;
 
 
@@ -21,6 +26,8 @@ public class LinearLayout_Fragment extends Fragment {
     private static RecyclerView listRecyclerView;
     private static ArrayList<Data_Model> listArrayList;
     private static ListView_Recycler_Adapter adapter;
+
+    private MainViewModel mainViewModel;
 
     // Images array for images
     private static final int[] images = { R.drawable.p1,
@@ -41,7 +48,16 @@ public class LinearLayout_Fragment extends Fragment {
         view = inflater.inflate(R.layout.linearlayout_fragment, container,
                 false);
         init();
-        populatRecyclerView();
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        mainViewModel.getAllBlog().observe(this, new Observer<ArrayList<Data_Model>>() {
+            @Override
+            public void onChanged(@Nullable ArrayList<Data_Model> data_models) {
+                adapter = new ListView_Recycler_Adapter(getActivity(), data_models);
+                listRecyclerView.setAdapter(adapter);// set adapter on recyclerview
+                adapter.notifyDataSetChanged();
+            }
+        });
+        //populatRecyclerView();
         setHasOptionsMenu(true);// this method used to set option menu on
         // fragment
         return view;
@@ -50,13 +66,13 @@ public class LinearLayout_Fragment extends Fragment {
     // Initialize the view
     private void init() {
 
-        // Getting the string array from strings.xml
+        /*// Getting the string array from strings.xml
         getTitle = getActivity().getResources().getStringArray(R.array.title);
         getLocation = getActivity().getResources().getStringArray(
                 R.array.location);
         getYear = getActivity().getResources().getStringArray(
                 R.array.constructed_year);
-        listArrayList = new ArrayList<Data_Model>();
+        listArrayList = new ArrayList<Data_Model>();*/
 
         listRecyclerView = (RecyclerView) view
                 .findViewById(R.id.linear_recyclerview);
@@ -76,10 +92,10 @@ public class LinearLayout_Fragment extends Fragment {
     // populate the list view by adding data to arraylist
     private void populatRecyclerView() {
 
-        for (int i = 0; i < getTitle.length; i++) {
+        /*for (int i = 0; i < getTitle.length; i++) {
             listArrayList.add(new Data_Model(getTitle[i], getLocation[i],
                     getYear[i], images[i]));
-        }
+        }*/
         adapter = new ListView_Recycler_Adapter(getActivity(), listArrayList);
         listRecyclerView.setAdapter(adapter);// set adapter on recyclerview
         adapter.notifyDataSetChanged();// Notify the adapter
