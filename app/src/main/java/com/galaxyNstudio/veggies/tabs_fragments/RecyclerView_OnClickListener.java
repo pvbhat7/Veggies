@@ -1,4 +1,4 @@
-package com.galaxyNstudio.veggies.tabs;
+package com.galaxyNstudio.veggies.tabs_fragments;
 
 import android.view.View;
 

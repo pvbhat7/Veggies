@@ -1,22 +1,18 @@
-package com.galaxyNstudio.veggies;
+package com.galaxyNstudio.veggies.repository;
 
 import android.app.Application;
 import android.arch.lifecycle.MutableLiveData;
 
-import com.galaxyNstudio.veggies.tabs.Data_Model;
+import com.galaxyNstudio.veggies.R;
+import com.galaxyNstudio.veggies.model.Data_Model;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created on : Feb 26, 2019
  * Author     : AndroidWave
  */
-public class BlogRepository {
+public class Repository {
     private ArrayList<Data_Model> movies = new ArrayList<>();
     private static ArrayList<Data_Model> listArrayList;
     private MutableLiveData<ArrayList<Data_Model>> mutableLiveData ;
@@ -28,7 +24,7 @@ public class BlogRepository {
             R.drawable.p1, R.drawable.p1 };
 
 
-    public BlogRepository(Application application) {
+    public Repository(Application application) {
         this.application = application;
     }
 

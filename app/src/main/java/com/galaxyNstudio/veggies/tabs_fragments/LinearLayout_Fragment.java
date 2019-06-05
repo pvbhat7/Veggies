@@ -1,7 +1,6 @@
-package com.galaxyNstudio.veggies.tabs;
+package com.galaxyNstudio.veggies.tabs_fragments;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import android.arch.lifecycle.Observer;
@@ -17,8 +16,10 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.galaxyNstudio.veggies.MainViewModel;
+import com.galaxyNstudio.veggies.viewModel.MainViewModel;
 import com.galaxyNstudio.veggies.R;
+import com.galaxyNstudio.veggies.adapters.ListView_Recycler_Adapter;
+import com.galaxyNstudio.veggies.model.Data_Model;
 
 
 public class LinearLayout_Fragment extends Fragment {
@@ -47,6 +48,7 @@ public class LinearLayout_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.linearlayout_fragment, container,
                 false);
+
         init();
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mainViewModel.getAllBlog().observe(this, new Observer<ArrayList<Data_Model>>() {

@@ -1,4 +1,4 @@
-package com.galaxyNstudio.veggies.tabs;
+package com.galaxyNstudio.veggies.model;
 
 public class Data_Model {
 

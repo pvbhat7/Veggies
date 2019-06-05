@@ -12,8 +12,8 @@ import android.support.v7.app.ActionBar.TabListener;
 import android.support.v7.app.AppCompatActivity;
 
 import com.galaxyNstudio.veggies.R;
-import com.galaxyNstudio.veggies.tabs.GridLayout_Fragment;
-import com.galaxyNstudio.veggies.tabs.LinearLayout_Fragment;
+import com.galaxyNstudio.veggies.tabs_fragments.GridLayout_Fragment;
+import com.galaxyNstudio.veggies.tabs_fragments.LinearLayout_Fragment;
 
 public class VegetableActivity extends AppCompatActivity implements TabListener {
     private static ViewPager viewPager;//View Pager for setting tabs

@@ -1,4 +1,4 @@
-package com.galaxyNstudio.veggies.tabs;
+package com.galaxyNstudio.veggies.adapters;
 
 import java.util.ArrayList;
 
@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.galaxyNstudio.veggies.R;
+import com.galaxyNstudio.veggies.model.Data_Model;
+import com.galaxyNstudio.veggies.tabs_fragments.RecyclerView_OnClickListener;
 
 
 public class GridView_Recycler_Adapter extends

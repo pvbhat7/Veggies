@@ -1,4 +1,4 @@
-package com.galaxyNstudio.veggies.tabs;
+package com.galaxyNstudio.veggies.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.galaxyNstudio.veggies.R;
+import com.galaxyNstudio.veggies.tabs_fragments.RecyclerView_OnClickListener;
 
 
 public class ListView_Holder extends RecyclerView.ViewHolder implements

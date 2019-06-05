@@ -1,4 +1,4 @@
-package com.galaxyNstudio.veggies.tabs;
+package com.galaxyNstudio.veggies.tabs_fragments;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.galaxyNstudio.veggies.R;
+import com.galaxyNstudio.veggies.adapters.GridView_Recycler_Adapter;
+import com.galaxyNstudio.veggies.model.Data_Model;
 
 
 public class GridLayout_Fragment extends Fragment {
