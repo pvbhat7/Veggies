@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.galaxyNstudio.veggies.R;
 import com.galaxyNstudio.veggies.api.RetrofitClient;
-import com.galaxyNstudio.veggies.model.MobileExist;
+import com.galaxyNstudio.veggies.responseWrapper.MobileExist;
 
 import retrofit2.Call;
 import retrofit2.Callback;

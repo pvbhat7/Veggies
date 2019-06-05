@@ -1,4 +1,4 @@
-package com.galaxyNstudio.veggies.model;
+package com.galaxyNstudio.veggies.responseWrapper;
 
 public class MobileExist {
 

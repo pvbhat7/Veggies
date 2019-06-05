@@ -16,7 +16,7 @@ public class RetrofitClient {
     private static final String AUTH = "Basic " + Base64.encodeToString(("admin:kop").getBytes(), Base64.NO_WRAP);
 
     //private static final String BASE_URL = "http://192.168.0.111/MyApi/public/";
-    private static final String BASE_URL = "https://veggykop.000webhostapp.com/veggy/veggy/MyApi/MyApi/public/";
+        private static final String BASE_URL = "https://veggykop.000webhostapp.com/veggy/veggy/MyApi/MyApi/public/";
 
     private static RetrofitClient mInstance;
     private Retrofit retrofit;

@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.galaxyNstudio.veggies.R;
 import com.galaxyNstudio.veggies.tabs_fragments.GridLayout_Fragment;
+import com.galaxyNstudio.veggies.tabs_fragments.LeafyVegetable_Fragment;
 import com.galaxyNstudio.veggies.tabs_fragments.LinearLayout_Fragment;
 
 public class VegetableActivity extends AppCompatActivity implements TabListener {
@@ -78,9 +79,14 @@ public class VegetableActivity extends AppCompatActivity implements TabListener 
         tab2.setText("GridView");
         tab2.setTabListener(this);
 
+        android.support.v7.app.ActionBar.Tab tab3 = actionBar.newTab();
+        tab3.setText("Leafy Vegetables");
+        tab3.setTabListener(this);
+
         // Now finally adding all tabs to actionbar
         actionBar.addTab(tab1);
         actionBar.addTab(tab2);
+        actionBar.addTab(tab3);
 
     }
 
@@ -121,6 +127,10 @@ public class VegetableActivity extends AppCompatActivity implements TabListener 
                 fragment = new GridLayout_Fragment();
             }
 
+            if (i == 2) {
+                fragment = new LeafyVegetable_Fragment();
+            }
+
             // and finally returning fragments
             return fragment;
         }
@@ -129,7 +139,7 @@ public class VegetableActivity extends AppCompatActivity implements TabListener 
         public int getCount() {
 
             // Returning no. of counts of fragments
-            return 2;
+            return 3;
         }
     }
 

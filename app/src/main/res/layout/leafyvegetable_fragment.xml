@@ -8,9 +8,9 @@
 
 
 
-        <include
-            android:id="@+id/linear_recyclerview"
-            layout="@layout/recycler_view" />
+    <include
+        android:id="@+id/leafyVegetable_recyclerview"
+        layout="@layout/recycler_view" />
 
 
 

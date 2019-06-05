@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.galaxyNstudio.veggies.R;
 import com.galaxyNstudio.veggies.api.RetrofitClient;
-import com.galaxyNstudio.veggies.model.MobileExist;
+import com.galaxyNstudio.veggies.responseWrapper.MobileExist;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;

@@ -1,10 +1,12 @@
 package com.galaxyNstudio.veggies.api;
 
-import com.galaxyNstudio.veggies.model.MobileExist;
+import com.galaxyNstudio.veggies.responseWrapper.MobileExist;
+import com.galaxyNstudio.veggies.responseWrapper.VegetableWrapper;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface Api {
@@ -69,6 +71,12 @@ public interface Api {
             @Field("email") String email,
             @Field("password") String password,
             @Field("mobile") String mobile
+    );
+
+    @FormUrlEncoded
+    @POST("getVVegetablesByCategory")
+    Call<VegetableWrapper> getVVegetablesByCategory(
+            @Field("category") String category
     );
 
 }

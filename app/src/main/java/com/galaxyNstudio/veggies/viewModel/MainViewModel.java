@@ -5,25 +5,31 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
+import com.galaxyNstudio.veggies.model.Product;
 import com.galaxyNstudio.veggies.repository.Repository;
 import com.galaxyNstudio.veggies.model.Data_Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created on : Feb 26, 2019
  * Author     : AndroidWave
  */
 public class MainViewModel extends AndroidViewModel {
-    private Repository movieRepository;
+    private Repository repository;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
-        movieRepository = new Repository(application);
+        repository = new Repository(application);
     }
 
     public LiveData<ArrayList<Data_Model>> getAllBlog() {
-        return movieRepository.getMutableLiveData();
+        return repository.getcityLiveDataLiveData();
+    }
+
+    public LiveData<List<Product>> getLeafyVegetables() {
+        return repository.getLeafyVegetableLiveData();
     }
 
 
