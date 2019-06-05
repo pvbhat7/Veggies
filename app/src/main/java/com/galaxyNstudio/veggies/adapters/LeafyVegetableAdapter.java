@@ -11,6 +11,8 @@ package com.galaxyNstudio.veggies.adapters;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
+        import android.widget.Button;
+        import android.widget.TextView;
         import android.widget.Toast;
 
         import com.bumptech.glide.Glide;
@@ -18,6 +20,7 @@ package com.galaxyNstudio.veggies.adapters;
         import com.galaxyNstudio.veggies.activities.MyAdapter;
         import com.galaxyNstudio.veggies.model.Data_Model;
         import com.galaxyNstudio.veggies.model.Product;
+        import com.galaxyNstudio.veggies.storage.SharedPrefManager;
         import com.galaxyNstudio.veggies.tabs_fragments.RecyclerView_OnClickListener;
 
 
@@ -26,6 +29,8 @@ public class LeafyVegetableAdapter extends
     // recyclerview adapter
     private List<Product> leafyVegetableList;
     private Context context;
+    private Button btn_add,img_add,img_remove;
+    private TextView item_count;
 
     public LeafyVegetableAdapter(Context context,
                                  List<Product> arrayList) {
@@ -42,9 +47,10 @@ public class LeafyVegetableAdapter extends
 
     @Override
     public void onBindViewHolder(LeafyVegetableHolder leafyVegetableHolder, int position) {
+
         final Product model = leafyVegetableList.get(position);
 
-        LeafyVegetableHolder holder = (LeafyVegetableHolder) leafyVegetableHolder;
+        final LeafyVegetableHolder holder = (LeafyVegetableHolder) leafyVegetableHolder;
         holder.productName.setText(model.getProductName());
         holder.oldPrice.setText(String.valueOf(model.getOldPrice()));
         holder.newPrice.setText(String.valueOf(model.getNewPrice()));
@@ -62,6 +68,33 @@ public class LeafyVegetableAdapter extends
                         Toast.makeText(context,
                                 "You have clicked " + model.getProductName(),
                                 Toast.LENGTH_LONG).show();
+                        break;
+
+                    case R.id.btn_add:
+                        int counter=SharedPrefManager.getInstance(context).getCounter(model.getId())+1;
+                        SharedPrefManager.getInstance(context).setCounter(model.getId(),counter);
+                        holder.plusMinus.setVisibility(View.VISIBLE);
+                        holder.addButton.setVisibility(View.GONE);
+                        holder.counter.setText(String.valueOf(SharedPrefManager.getInstance(context).getCounter(model.getId())));
+                    break;
+
+                    case R.id.img_add:
+                        int counter2=SharedPrefManager.getInstance(context).getCounter(model.getId())+1;
+                        SharedPrefManager.getInstance(context).setCounter(model.getId(),counter2);
+                        holder.counter.setText(String.valueOf(SharedPrefManager.getInstance(context).getCounter(model.getId())));
+                        break;
+
+                    case R.id.img_remove:
+                        int counter1=SharedPrefManager.getInstance(context).getCounter(model.getId());
+                        if(counter1 == 1){
+                            holder.plusMinus.setVisibility(View.GONE);
+                            holder.addButton.setVisibility(View.VISIBLE);
+                        }
+                        else{
+                            SharedPrefManager.getInstance(context).setCounter(model.getId(),counter1-1);
+                            holder.counter.setText(String.valueOf(SharedPrefManager.getInstance(context).getCounter(model.getId())));
+                        }
+
                         break;
 
                     /*case R.id.list_delete:

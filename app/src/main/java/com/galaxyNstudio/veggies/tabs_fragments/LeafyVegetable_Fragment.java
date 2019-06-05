@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import android.app.ProgressDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -32,6 +33,8 @@ public class LeafyVegetable_Fragment extends Fragment {
     private static LeafyVegetableAdapter adapter;
 
     private MainViewModel mainViewModel;
+    ProgressDialog progressDialog;
+
 
     public LeafyVegetable_Fragment() {
 
@@ -44,20 +47,47 @@ public class LeafyVegetable_Fragment extends Fragment {
                 false);
 
         init();
+        progressDialog=new ProgressDialog(getActivity());
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+
         mainViewModel.getLeafyVegetables().observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(@Nullable List<Product> products) {
                 adapter = new LeafyVegetableAdapter(getActivity(), products);
                 listRecyclerView.setAdapter(adapter);// set adapter on recyclerview
                 adapter.notifyDataSetChanged();
+                mainViewModel.getIsLoading().setValue(false);
+
             }
         });
+        mainViewModel.getIsLoading().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean aBoolean) {
+                if(aBoolean){
+                    showProgressBar();
+                }else{
+                    hideProgressBar();
+                }
+            }
+        });
+
 
         //populatRecyclerView();
         setHasOptionsMenu(true);// this method used to set option menu on
         // fragment
         return view;
+    }
+
+
+
+
+    private void showProgressBar() {
+        progressDialog.setMessage("Loading data...");
+        progressDialog.show();
+    }
+
+    private void hideProgressBar() {
+        progressDialog.hide();
     }
 
     // Initialize the view

@@ -34,6 +34,7 @@ public class Repository {
     // leafy vegetable
     private static List<Product> leafyVegetableArrayList;
     private MutableLiveData<List<Product>> leafyVegetableLivedata ;
+    private final MutableLiveData<Boolean> isLoading=new MutableLiveData<>();
 
 
 
@@ -41,6 +42,10 @@ public class Repository {
         this.application = application;
     }
 
+    public MutableLiveData<Boolean> getIsLoading(){
+        isLoading.setValue(true);
+        return isLoading;
+    }
     public MutableLiveData<List<Product>> getLeafyVegetableLiveData() {
         if(leafyVegetableLivedata == null){
             leafyVegetableLivedata=new MutableLiveData<>();
@@ -53,6 +58,7 @@ public class Repository {
             call.enqueue(new Callback<VegetableWrapper>() {
                 @Override
                 public void onResponse(Call<VegetableWrapper> call, Response<VegetableWrapper> response) {
+                    isLoading.setValue(false);
                     if (response.code() == 200 && !response.body().getError()) {
                         leafyVegetableArrayList=response.body().getVegetableList();
                         leafyVegetableLivedata.setValue(leafyVegetableArrayList);

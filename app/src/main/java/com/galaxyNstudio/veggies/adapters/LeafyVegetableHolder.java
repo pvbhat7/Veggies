@@ -4,7 +4,9 @@ package com.galaxyNstudio.veggies.adapters;
         import android.support.v7.widget.RecyclerView;
         import android.view.View;
         import android.view.View.OnClickListener;
+        import android.widget.Button;
         import android.widget.ImageView;
+        import android.widget.LinearLayout;
         import android.widget.RelativeLayout;
         import android.widget.TextView;
 
@@ -20,6 +22,11 @@ public class LeafyVegetableHolder extends RecyclerView.ViewHolder implements
     TextView newPrice;
     ImageView image;
     public RelativeLayout listLayout;
+    public TextView counter;
+    public Button addButton;
+    public ImageView plus,minus;
+    public  LinearLayout plusMinus;
+
 
     private RecyclerView_OnClickListener.OnClickListener onClickListener;
 
@@ -33,6 +40,15 @@ public class LeafyVegetableHolder extends RecyclerView.ViewHolder implements
         this.listLayout = (RelativeLayout) view.findViewById(R.id.rl_root);
 
         this.listLayout.setOnClickListener(this);
+        this.counter=(TextView)view.findViewById(R.id.item_count);
+        this.addButton=(Button)view.findViewById(R.id.btn_add);
+        this.plusMinus=(LinearLayout) view.findViewById(R.id.plusMinusLayout);
+        this.minus=(ImageView)view.findViewById(R.id.img_remove);
+        this.plus=(ImageView)view.findViewById(R.id.img_add);
+
+        this.plus.setOnClickListener(this);
+        this.minus.setOnClickListener(this);
+        this.addButton.setOnClickListener(this);
 
     }
 

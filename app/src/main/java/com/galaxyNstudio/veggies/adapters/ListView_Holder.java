@@ -3,7 +3,9 @@ package com.galaxyNstudio.veggies.adapters;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,6 +19,7 @@ public class ListView_Holder extends RecyclerView.ViewHolder implements
     public TextView list_title, list_location, list_date;
     public ImageView list_imageView, list_delete;
     public RelativeLayout listLayout;
+
 
     private RecyclerView_OnClickListener.OnClickListener onClickListener;
 
@@ -36,6 +39,9 @@ public class ListView_Holder extends RecyclerView.ViewHolder implements
         // Implement click listener over views that we need
         this.list_delete.setOnClickListener(this);
         this.listLayout.setOnClickListener(this);
+
+
+
 
     }
 

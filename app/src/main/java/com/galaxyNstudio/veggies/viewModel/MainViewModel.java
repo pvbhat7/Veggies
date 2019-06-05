@@ -3,6 +3,7 @@ package com.galaxyNstudio.veggies.viewModel;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
 import com.galaxyNstudio.veggies.model.Product;
@@ -30,6 +31,11 @@ public class MainViewModel extends AndroidViewModel {
 
     public LiveData<List<Product>> getLeafyVegetables() {
         return repository.getLeafyVegetableLiveData();
+    }
+
+    public MutableLiveData<Boolean> getIsLoading(){
+        MutableLiveData<Boolean> isLoading=repository.getIsLoading();
+        return isLoading;
     }
 
 

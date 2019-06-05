@@ -82,7 +82,7 @@ public class HomePage extends AppCompatActivity
     };
 
     public void loadProductOnline(){
-        final ProgressDialog progressDialog=new ProgressDialog(this);
+        /*final ProgressDialog progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Loading data...");
         progressDialog.show();
 
@@ -120,7 +120,7 @@ public class HomePage extends AppCompatActivity
         });
 
         RequestQueue requestQueue= Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+        requestQueue.add(stringRequest);*/
     }
 
     @Override
