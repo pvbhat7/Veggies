@@ -1,7 +1,10 @@
 package com.galaxyNstudio.veggies.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -16,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -40,12 +44,14 @@ public class HomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
 
     CarouselView carouselView;
-    private Button vegetable;
+    private Button vegetable,try_again_button;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<Product> productList;
     private static final String URL_DATA="https://progym007.000webhostapp.com/Api.php?apicall=getvegetables";
     int[] sampleImages = {R.drawable.p1, R.drawable.p2, R.drawable.p3};
+    DrawerLayout drawerLayout;
+    LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +72,10 @@ public class HomePage extends AppCompatActivity
         carouselView.setImageListener(imageListener);
         vegetable=findViewById(R.id.vegetables);
         vegetable.setOnClickListener(this);
+        try_again_button=findViewById(R.id.try_again_button);
+        try_again_button.setOnClickListener(this);
+        drawerLayout=findViewById(R.id.drawer_layout);
+        linearLayout=findViewById(R.id.errorPage);
         /*recyclerView=(RecyclerView)findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -190,9 +200,36 @@ public class HomePage extends AppCompatActivity
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.vegetables:
-                Intent intent=new Intent(HomePage.this,VegetableActivity.class);
-                startActivity(intent);
+                proceedToVegetablePage();
+
             break;
+            case R.id.try_again_button:
+                if(isInternetConnectionAvailable()){
+                    drawerLayout.setVisibility(View.VISIBLE);
+                    linearLayout.setVisibility(View.GONE);
+                }
+                else
+                    Toast.makeText(this, "Check internet connection", Toast.LENGTH_SHORT).show();
+                break;
         }
+    }
+
+    private void proceedToVegetablePage() {
+        if(isInternetConnectionAvailable()){
+            Intent intent=new Intent(HomePage.this,VegetableActivity.class);
+            startActivity(intent);}
+        else{
+            //show erorr page
+            drawerLayout.setVisibility(View.GONE);
+            linearLayout.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private boolean isInternetConnectionAvailable() {
+        ConnectivityManager ConnectionManager=(ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo=ConnectionManager.getActiveNetworkInfo();
+        if(networkInfo != null && networkInfo.isConnected()==true )
+        return true;
+        return false;
     }
 }

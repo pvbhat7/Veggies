@@ -26,11 +26,11 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public LiveData<ArrayList<Data_Model>> getAllBlog() {
-        return repository.getcityLiveDataLiveData();
+        return repository.getcityLiveData();
     }
 
-    public LiveData<List<Product>> getLeafyVegetables() {
-        return repository.getLeafyVegetableLiveData();
+    public LiveData<List<Product>> getLeafyVegetables(String category) {
+        return repository.getLeafyVegetableLiveData(category);
     }
 
     public MutableLiveData<Boolean> getIsLoading(){

@@ -121,14 +121,14 @@ public class VegetableActivity extends AppCompatActivity implements TabListener 
             // Getting fragments according to selected position
             Fragment fragment = null;
             if (i == 0) {
-                fragment = new LinearLayout_Fragment();
+                fragment = new LeafyVegetable_Fragment();
             }
             if (i == 1) {
                 fragment = new GridLayout_Fragment();
             }
 
             if (i == 2) {
-                fragment = new LeafyVegetable_Fragment();
+                fragment = new LinearLayout_Fragment();
             }
 
             // and finally returning fragments

@@ -65,7 +65,19 @@ public class SharedPrefManager {
     }
     public int getCounter(String id){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getInt(id,-1);
+        return sharedPreferences.getInt(id,0);
+    }
+
+    public void setVegetableFetchedFromAndSavedInSqlite(String category,int i){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putInt(category,i);
+        editor.apply();
+    }
+    public int getVegetableFetchedFromAndSavedInSqlite(String category){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getInt(category,0);
     }
 
 

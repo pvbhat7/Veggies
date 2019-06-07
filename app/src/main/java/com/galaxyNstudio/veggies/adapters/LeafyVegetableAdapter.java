@@ -7,6 +7,7 @@ package com.galaxyNstudio.veggies.adapters;
         import android.content.Context;
         import android.graphics.Bitmap;
         import android.graphics.BitmapFactory;
+        import android.os.AsyncTask;
         import android.support.v7.widget.RecyclerView;
         import android.view.LayoutInflater;
         import android.view.View;
@@ -16,6 +17,8 @@ package com.galaxyNstudio.veggies.adapters;
         import android.widget.Toast;
 
         import com.bumptech.glide.Glide;
+        import com.galaxyNstudio.veggies.Dao.DatabaseClient;
+        import com.galaxyNstudio.veggies.Entities.Cart;
         import com.galaxyNstudio.veggies.R;
         import com.galaxyNstudio.veggies.activities.MyAdapter;
         import com.galaxyNstudio.veggies.model.Data_Model;
@@ -29,7 +32,7 @@ public class LeafyVegetableAdapter extends
     // recyclerview adapter
     private List<Product> leafyVegetableList;
     private Context context;
-    private Button btn_add,img_add,img_remove;
+    private Button btn_add, img_add, img_remove;
     private TextView item_count;
 
     public LeafyVegetableAdapter(Context context,
@@ -71,27 +74,55 @@ public class LeafyVegetableAdapter extends
                         break;
 
                     case R.id.btn_add:
-                        int counter=SharedPrefManager.getInstance(context).getCounter(model.getId())+1;
-                        SharedPrefManager.getInstance(context).setCounter(model.getId(),counter);
+                        int counter = SharedPrefManager.getInstance(context).getCounter(model.getId()) + 1;
+                        SharedPrefManager.getInstance(context).setCounter(model.getId(), counter);
                         holder.plusMinus.setVisibility(View.VISIBLE);
                         holder.addButton.setVisibility(View.GONE);
                         holder.counter.setText(String.valueOf(SharedPrefManager.getInstance(context).getCounter(model.getId())));
-                    break;
+
+                        // add cart item to squlite database
+                        class addToCart extends AsyncTask<Void, Void, Void> {
+
+                            @Override
+                            protected Void doInBackground(Void... voids) {
+                                //creating a task
+
+                                Cart cart = new Cart(model.getId(), model.getProductName(), model.getOldPrice(), model.getNewPrice(), model.getAvailability(), model.getCategory(), model.getImage());
+
+
+                                //adding to database
+                                DatabaseClient.getInstance(context).getAppDatabase()
+                                        .cartDao()
+                                        .insert(cart);
+                                return null;
+                            }
+
+                            @Override
+                            protected void onPostExecute(Void aVoid) {
+                                super.onPostExecute(aVoid);
+                                Toast.makeText(context, "Added to cart", Toast.LENGTH_LONG).show();
+                                getCartItemCount();
+                            }
+
+                        }
+                        addToCart obj = new addToCart();
+                        obj.execute();
+                        break;
 
                     case R.id.img_add:
-                        int counter2=SharedPrefManager.getInstance(context).getCounter(model.getId())+1;
-                        SharedPrefManager.getInstance(context).setCounter(model.getId(),counter2);
+                        int counter2 = SharedPrefManager.getInstance(context).getCounter(model.getId()) + 1;
+                        SharedPrefManager.getInstance(context).setCounter(model.getId(), counter2);
                         holder.counter.setText(String.valueOf(SharedPrefManager.getInstance(context).getCounter(model.getId())));
                         break;
 
                     case R.id.img_remove:
-                        int counter1=SharedPrefManager.getInstance(context).getCounter(model.getId());
-                        if(counter1 == 1){
+                        int counter1 = SharedPrefManager.getInstance(context).getCounter(model.getId());
+                        if (counter1 == 1) {
+                            SharedPrefManager.getInstance(context).setCounter(model.getId(), counter1 - 1);
                             holder.plusMinus.setVisibility(View.GONE);
                             holder.addButton.setVisibility(View.VISIBLE);
-                        }
-                        else{
-                            SharedPrefManager.getInstance(context).setCounter(model.getId(),counter1-1);
+                        } else {
+                            SharedPrefManager.getInstance(context).setCounter(model.getId(), counter1 - 1);
                             holder.counter.setText(String.valueOf(SharedPrefManager.getInstance(context).getCounter(model.getId())));
                         }
 
@@ -112,8 +143,38 @@ public class LeafyVegetableAdapter extends
 
     @Override
     public LeafyVegetableHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listitem, parent, false);
         return new LeafyVegetableHolder(view);
     }
 
+    public void getCartItemCount() {
+
+
+        class GetTasks extends AsyncTask<Void, Void, List<Cart>> {
+
+            @Override
+            protected List<Cart> doInBackground(Void... voids) {
+                List<Cart> taskList = DatabaseClient
+                        .getInstance(context)
+                        .getAppDatabase()
+                        .cartDao()
+                        .getAll();
+                return taskList;
+            }
+
+            @Override
+            protected void onPostExecute(List<Cart> tasks) {
+                super.onPostExecute(tasks);
+                Toast.makeText(context, "cart size :"+tasks.size(), Toast.LENGTH_LONG).show();
+
+
+            }
+        }
+
+        GetTasks gt = new GetTasks();
+        gt.execute();
+
+    }
 }
+
+

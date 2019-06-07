@@ -50,7 +50,7 @@ public class LeafyVegetable_Fragment extends Fragment {
         progressDialog=new ProgressDialog(getActivity());
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
-        mainViewModel.getLeafyVegetables().observe(this, new Observer<List<Product>>() {
+        mainViewModel.getLeafyVegetables("Leafy Vegetable").observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(@Nullable List<Product> products) {
                 adapter = new LeafyVegetableAdapter(getActivity(), products);
