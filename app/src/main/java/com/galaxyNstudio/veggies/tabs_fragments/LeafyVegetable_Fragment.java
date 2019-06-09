@@ -7,6 +7,7 @@ import java.util.Random;
 import android.app.ProgressDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,8 +18,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.galaxyNstudio.veggies.activities.CartSummary;
 import com.galaxyNstudio.veggies.adapters.LeafyVegetableAdapter;
 import com.galaxyNstudio.veggies.model.Product;
 import com.galaxyNstudio.veggies.viewModel.MainViewModel;
@@ -27,13 +30,13 @@ import com.galaxyNstudio.veggies.adapters.ListView_Recycler_Adapter;
 import com.galaxyNstudio.veggies.model.Data_Model;
 
 
-public class LeafyVegetable_Fragment extends Fragment {
+public class LeafyVegetable_Fragment extends Fragment implements View.OnClickListener{
     private static View view;
     private static RecyclerView listRecyclerView;
-    private static ArrayList<Data_Model> listArrayList;
     private static LeafyVegetableAdapter adapter;
     public static TextView cartTotalAm;
     private MainViewModel mainViewModel;
+    private Button continueToCart;
     ProgressDialog progressDialog;
 
 
@@ -48,6 +51,8 @@ public class LeafyVegetable_Fragment extends Fragment {
                 false);
 
         cartTotalAm=view.findViewById(R.id.cartTotalAmount);
+        continueToCart=view.findViewById(R.id.continueToCart);
+        continueToCart.setOnClickListener(this);
         progressDialog=new ProgressDialog(getActivity());
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
@@ -84,8 +89,8 @@ public class LeafyVegetable_Fragment extends Fragment {
         return view;
     }
 
-    public static void calculateTotal(Double total){
-        cartTotalAm.setText("Total Rs."+String.valueOf(total));
+    public static void calculateTotal(int counter,Double total){
+        cartTotalAm.setText(counter+" items . Rs."+String.valueOf(total));
     }
 
 
@@ -133,5 +138,15 @@ public class LeafyVegetable_Fragment extends Fragment {
         });
 
         super.onCreateOptionsMenu(menu, inflater);*/
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.continueToCart:
+                Intent intent=new Intent(getActivity(), CartSummary.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

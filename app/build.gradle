@@ -78,8 +78,6 @@ dependencies {
     testImplementation "android.arch.persistence.room:testing:$room_version"
 
 
-
-
 }
 
 apply plugin: 'com.google.gms.google-services'

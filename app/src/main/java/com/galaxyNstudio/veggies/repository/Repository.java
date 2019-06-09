@@ -1,8 +1,8 @@
 package com.galaxyNstudio.veggies.repository;
 
 import android.app.Application;
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.arch.persistence.db.SupportSQLiteStatement;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -13,7 +13,6 @@ import com.galaxyNstudio.veggies.R;
 import com.galaxyNstudio.veggies.api.RetrofitClient;
 import com.galaxyNstudio.veggies.model.Data_Model;
 import com.galaxyNstudio.veggies.model.Product;
-import com.galaxyNstudio.veggies.responseWrapper.MobileExist;
 import com.galaxyNstudio.veggies.responseWrapper.VegetableWrapper;
 import com.galaxyNstudio.veggies.storage.SharedPrefManager;
 
@@ -31,6 +30,7 @@ import retrofit2.Response;
 public class Repository {
     private static ArrayList<Data_Model> cityList;
     private MutableLiveData<ArrayList<Data_Model>> cityLiveData ;
+    private MutableLiveData<List<Cart>> cartItemsLiveData ;
     private Application application;
     String[] getTitle, getLocation, getYear;
     private static final int[] images = { R.drawable.p1,
@@ -198,5 +198,41 @@ public class Repository {
 
         GetLeafyVegetables gt = new GetLeafyVegetables();
         gt.execute();
+    }
+
+    public LiveData<List<Cart>> getCartItems() {
+        if(cartItemsLiveData == null){
+            cartItemsLiveData=new MutableLiveData<>();
+            fetchCartItems();
+        }
+        return cartItemsLiveData;
+    }
+
+    public void fetchCartItems() {
+
+
+        class GetTasks extends AsyncTask<Void, Void, List<Cart>> {
+
+            @Override
+            protected List<Cart> doInBackground(Void... voids) {
+                List<Cart> taskList = DatabaseClient
+                        .getInstance(application)
+                        .getAppDatabase()
+                        .cartDao()
+                        .getAll();
+                return taskList;
+            }
+
+            @Override
+            protected void onPostExecute(List<Cart> tasks) {
+                super.onPostExecute(tasks);
+                if(cartItemsLiveData.getValue() == null)
+                cartItemsLiveData.setValue(tasks);
+            }
+        }
+
+        GetTasks gt = new GetTasks();
+        gt.execute();
+
     }
 }

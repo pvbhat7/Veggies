@@ -6,6 +6,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
+import com.galaxyNstudio.veggies.Entities.Cart;
 import com.galaxyNstudio.veggies.model.Product;
 import com.galaxyNstudio.veggies.repository.Repository;
 import com.galaxyNstudio.veggies.model.Data_Model;
@@ -37,6 +38,11 @@ public class MainViewModel extends AndroidViewModel {
         MutableLiveData<Boolean> isLoading=repository.getIsLoading();
         return isLoading;
     }
+
+    public LiveData<List<Cart>> getCartItems() {
+        return repository.getCartItems();
+    }
+
 
 
 }
