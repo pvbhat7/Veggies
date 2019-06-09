@@ -176,7 +176,7 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
                             FirebaseUser user = task.getResult().getUser();
                             //if(PARENT_COMMAND.equals("signup_activity"))
                             //registerUserInDatabase();
-                            Intent intent = new Intent(OtpActivity.this, MainActivity.class);
+                            Intent intent = new Intent(OtpActivity.this, HomePage.class);
                             startActivity(intent);
 
                         } else {

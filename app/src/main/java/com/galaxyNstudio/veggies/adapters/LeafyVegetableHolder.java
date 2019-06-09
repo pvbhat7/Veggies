@@ -26,6 +26,7 @@ public class LeafyVegetableHolder extends RecyclerView.ViewHolder implements
     public Button addButton;
     public ImageView plus,minus;
     public  LinearLayout plusMinus;
+    public TextView cartTotalAmount;
 
 
     private RecyclerView_OnClickListener.OnClickListener onClickListener;
@@ -45,6 +46,7 @@ public class LeafyVegetableHolder extends RecyclerView.ViewHolder implements
         this.plusMinus=(LinearLayout) view.findViewById(R.id.plusMinusLayout);
         this.minus=(ImageView)view.findViewById(R.id.img_remove);
         this.plus=(ImageView)view.findViewById(R.id.img_add);
+        this.cartTotalAmount=(TextView)view.findViewById(R.id.cartTotalAmount);
 
         this.plus.setOnClickListener(this);
         this.minus.setOnClickListener(this);

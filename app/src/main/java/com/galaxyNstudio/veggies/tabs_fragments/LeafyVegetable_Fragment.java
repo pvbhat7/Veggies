@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.galaxyNstudio.veggies.adapters.LeafyVegetableAdapter;
 import com.galaxyNstudio.veggies.model.Product;
@@ -31,7 +32,7 @@ public class LeafyVegetable_Fragment extends Fragment {
     private static RecyclerView listRecyclerView;
     private static ArrayList<Data_Model> listArrayList;
     private static LeafyVegetableAdapter adapter;
-
+    public TextView cartTotalAm;
     private MainViewModel mainViewModel;
     ProgressDialog progressDialog;
 
@@ -46,13 +47,18 @@ public class LeafyVegetable_Fragment extends Fragment {
         view = inflater.inflate(R.layout.leafyvegetable_fragment, container,
                 false);
 
-        init();
+        cartTotalAm=view.findViewById(R.id.cartTotalAmount);
         progressDialog=new ProgressDialog(getActivity());
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
         mainViewModel.getLeafyVegetables("Leafy Vegetable").observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(@Nullable List<Product> products) {
+                listRecyclerView = (RecyclerView) view
+                        .findViewById(R.id.leafyVegetable_recyclerview);
+                listRecyclerView
+                        .setLayoutManager(new LinearLayoutManager(getActivity()));// for
+                listRecyclerView.setHasFixedSize(true);
                 adapter = new LeafyVegetableAdapter(getActivity(), products);
                 listRecyclerView.setAdapter(adapter);// set adapter on recyclerview
                 adapter.notifyDataSetChanged();
@@ -90,16 +96,7 @@ public class LeafyVegetable_Fragment extends Fragment {
         progressDialog.hide();
     }
 
-    // Initialize the view
-    private void init() {
 
-        listRecyclerView = (RecyclerView) view
-                .findViewById(R.id.leafyVegetable_recyclerview);
-        listRecyclerView.setHasFixedSize(true);
-        listRecyclerView
-                .setLayoutManager(new LinearLayoutManager(getActivity()));// for
-
-    }
 
 
 

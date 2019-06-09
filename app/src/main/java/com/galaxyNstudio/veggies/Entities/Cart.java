@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Entity
 public class Cart implements Serializable {
 
-    public Cart(String productId, String vegetableName, Double oldPrice, Double newPrice, String availability, String category,String image) {
+    public Cart(String productId, String vegetableName, Double oldPrice, Double newPrice, String availability, String category,String image,int qty) {
         this.productId = productId;
         this.vegetableName = vegetableName;
         this.oldPrice = oldPrice;
@@ -17,6 +17,7 @@ public class Cart implements Serializable {
         this.availability = availability;
         this.category = category;
         this.image=image;
+        this.qty=qty;
     }
 
     @PrimaryKey(autoGenerate = true)
@@ -50,6 +51,17 @@ public class Cart implements Serializable {
 
     @ColumnInfo(name = "image")
     private String image;
+
+    @ColumnInfo(name = "qty")
+    private int qty;
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public int getQty() {
+        return qty;
+    }
 
     public void setId(int id) {
         this.id = id;
