@@ -32,7 +32,7 @@ public class LeafyVegetable_Fragment extends Fragment {
     private static RecyclerView listRecyclerView;
     private static ArrayList<Data_Model> listArrayList;
     private static LeafyVegetableAdapter adapter;
-    public TextView cartTotalAm;
+    public static TextView cartTotalAm;
     private MainViewModel mainViewModel;
     ProgressDialog progressDialog;
 
@@ -82,6 +82,10 @@ public class LeafyVegetable_Fragment extends Fragment {
         setHasOptionsMenu(true);// this method used to set option menu on
         // fragment
         return view;
+    }
+
+    public static void calculateTotal(Double total){
+        cartTotalAm.setText("Total Rs."+String.valueOf(total));
     }
 
 

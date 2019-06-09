@@ -21,6 +21,7 @@ package com.galaxyNstudio.veggies.adapters;
         import com.galaxyNstudio.veggies.R;
         import com.galaxyNstudio.veggies.model.Product;
         import com.galaxyNstudio.veggies.storage.SharedPrefManager;
+        import com.galaxyNstudio.veggies.tabs_fragments.LeafyVegetable_Fragment;
         import com.galaxyNstudio.veggies.tabs_fragments.RecyclerView_OnClickListener;
         import com.galaxyNstudio.veggies.viewModel.MainViewModel;
 
@@ -288,9 +289,11 @@ public class LeafyVegetableAdapter extends
                     for(int i=0;i<c.getQty();i++){
                         cartTotal=cartTotal+c.getNewPrice();
                     }
-
-                    Toast.makeText(context, "Cart Total :"+cartTotal, Toast.LENGTH_SHORT).show();
                 }
+/*
+                Toast.makeText(context, "Cart Total :"+cartTotal, Toast.LENGTH_SHORT).show();
+*/
+                LeafyVegetable_Fragment.calculateTotal(cartTotal);
 
 
 
